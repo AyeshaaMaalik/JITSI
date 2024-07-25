@@ -1,9 +1,5 @@
-/**
- * @format
- */
+import { AppRegistry } from 'react-native';
+import PipComponent from './PipComponent'; // Adjust the path as necessary
+import { name as appName } from './app.json';
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
-
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => PipComponent);
