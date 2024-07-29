@@ -82,6 +82,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+        freeCompilerArgs += ["-Xjsr305=strict"]
+    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -89,6 +98,9 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+    }
+    lintOptions {
+        disable 'Deprecation'
     }
     buildTypes {
         debug {
@@ -108,11 +120,13 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
-    if (hermesEnabled.toBoolean()) {
+    if (project.hasProperty('hermesEnabled') && hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
-        implementation jscFlavor
+        implementation(jscFlavor)
     }
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.ext.kotlinVersion")
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
