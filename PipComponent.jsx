@@ -49,7 +49,7 @@ const PiPComponent = () => {
         flags={flags}
         eventListeners={eventListeners}
         room="ashyellow"
-        serverURL="https://meet.jit.si/ashyellow" 
+        serverURL="https://zimomeet.live" 
         style={styles.jitsiMeeting}
         token={token}
         userInfo={{
