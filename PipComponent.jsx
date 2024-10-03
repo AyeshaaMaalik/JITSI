@@ -1,4 +1,3 @@
-// PiPComponent.jsx
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { JitsiMeeting } from '@jitsi/react-native-sdk';
@@ -25,6 +24,12 @@ const PiPComponent = () => {
     'call-integration.enabled': true,
     'fullscreen.enabled': false,
     'invite.enabled': true,
+    'prejoinPageEnabled': false,
+    'notifications.enabled': false,
+  };
+
+  const interfaceConfig = {
+    SETTINGS_SECTIONS: ['language'], 
   };
 
   const eventListeners = {
@@ -40,16 +45,17 @@ const PiPComponent = () => {
     onVideoMutedChanged: (isMuted) => console.log('Video muted changed:', isMuted),
   };
 
-  const token = 'your-jwt-token'; 
+  const token = 'your-jwt-token';
 
   return (
     <View style={styles.container}>
       <JitsiMeeting
         config={config}
         flags={flags}
+        interfaceConfig={interfaceConfig}
         eventListeners={eventListeners}
         room="ashyellow"
-        serverURL="https://zimomeet.live" 
+        serverURL="https://meet.jit.si/AshYellow"
         style={styles.jitsiMeeting}
         token={token}
         userInfo={{
